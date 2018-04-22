@@ -25,7 +25,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        \Carbon\Carbon::setLocale('zh');
 
     }
 }
