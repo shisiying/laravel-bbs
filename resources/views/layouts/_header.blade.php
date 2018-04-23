@@ -15,7 +15,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                LaraBBS
+                Web安全社区
             </a>
 
         </div>
