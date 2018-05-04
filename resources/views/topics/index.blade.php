@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-lg-3 col-md-3 sidebar">
-            @include('topics._sidebar',['active_users'=>$active_users])
+            @include('topics._sidebar',['active_users'=>$active_users,'links'=>$links])
         </div>
 
     </div>
