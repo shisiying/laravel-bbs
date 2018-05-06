@@ -7,51 +7,49 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## About Laravel-bbs
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+laravel是我学习的laravel的独立开发的个人项目，该项目更是让我感受到了laravel作为web开发的优雅性以及便利性，该项目功能主要包含了以下功能:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 用户认证 —— 注册、登录、退出；
+- 个人中心 —— 用户个人中心，编辑资料；
+- 用户授权 —— 作者才能删除自己的内容；
+- 上传图片 —— 修改头像和编辑话题时候上传图片；
+- 表单验证 —— 使用表单验证类；
+- 模型监控 —— 自动 Slug 翻译；
+- 使用第三方 API —— 请求百度翻译 API ；
+- 队列任务 —— 将百度翻译 API 请求和发送邮件放到队列中，以提高响应；
+- 计划任务 —— 『活跃用户』计算，一小时计算一次；
+- 多角色权限管理 —— 允许站长，管理员权限的存在；
+- 后台管理 —— 后台数据模型管理；
+- 邮件通知 —— 发送新回复邮件通知；
+- 站内通知 —— 话题有新回复；
+- 自定义 Artisan 命令行 —— 自定义活跃用户计算命令；
+- 自定义 Trait —— 活跃用户的业务逻辑实现；
+- 自定义中间件 —— 记录用户的最后登录时间；
+- 模型修改器；
+- XSS 安全防御；
+
+### 未完成功能
+
+- [ ]全栈帖子搜索功能
+- [ ]用户关注功能
+- [ ]实现 @某个人 功能
+- [ ]增加第三方登陆
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## Learning Laravel
+## Learning Laravel-bbs
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+该项目主要涉及了以下知识点
+待总结...
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## How to use Laravel-bbs
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+- 开发环境参考[Laravel开发环境部署](https://laravel-china.org/docs/laravel-development-environment/5.5)
+- git clone https://github.com/shisiying/Laravel-bbs
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
