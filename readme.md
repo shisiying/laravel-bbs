@@ -44,71 +44,71 @@ laravel是我学习的laravel的个人项目，该项目更是让我感受到了
 
 - 用户认证 —— 注册、登录、退出
 
-使用laravel自带auth组件,使用php artisan make:auth生成,具体路由如下所示:
->// Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    使用laravel自带auth组件,使用php artisan make:auth生成,具体路由如下所示:
+    >// Authentication Routes...
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
 
-// Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    // Password Reset Routes...
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 - 添加验证码
 
-安装第三方扩展包[mews/captcha](https://github.com/mewebstudio/captcha) 作为基础来实现 Laravel 中的验证码功能
+    安装第三方扩展包[mews/captcha](https://github.com/mewebstudio/captcha) 作为基础来实现 Laravel 中的验证码功能
 
-由于 mews/captcha 是专门为 Laravel 量身定制的扩展包，因此后端显得很简单，可参照文档来操作
+    由于 mews/captcha 是专门为 Laravel 量身定制的扩展包，因此后端显得很简单，可参照文档来操作
 
-可参照源码[注册页](https://github.com/shisiying/laravel-bbs/blob/master/resources/views/auth/register.blade.php)的验证码显示
+    可参照源码[注册页](https://github.com/shisiying/laravel-bbs/blob/master/resources/views/auth/register.blade.php)的验证码显示
 
-[后端验证](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/Auth/RegisterController.php)validator方法
+    [后端验证](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/Auth/RegisterController.php)validator方法
 
 - 上传图片 —— 修改头像和编辑话题时候上传图片
 
-[上传图片以及裁剪图片工具类](https://github.com/shisiying/laravel-bbs/blob/master/app/Handlers/ImageUploadHandler.php)
+    [上传图片以及裁剪图片工具类](https://github.com/shisiying/laravel-bbs/blob/master/app/Handlers/ImageUploadHandler.php)
 
-裁剪图片使用Intervention/image 
+    裁剪图片使用Intervention/image 
 
-具体使用工具类可参照[UsersController](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/UsersController.php)的update方法
+    具体使用工具类可参照[UsersController](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/UsersController.php)的update方法
 
 
 - 用户授权 —— 作者才能删除自己的内容
 
-[laravel授权策略](https://laravel-china.org/docs/laravel/5.5/authorization#policies)
+    [laravel授权策略](https://laravel-china.org/docs/laravel/5.5/authorization#policies)
 
-[授权策略的编写](https://github.com/shisiying/laravel-bbs/blob/master/app/Policies/UserPolicy.php)
+    [授权策略的编写](https://github.com/shisiying/laravel-bbs/blob/master/app/Policies/UserPolicy.php)
 
-[授权策略在页面使用]()
+    [授权策略在页面使用]()
 
-[授权策略在控制器的使用](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/UsersController.php)中的$this->authorize('update', $user);
+    [授权策略在控制器的使用](https://github.com/shisiying/laravel-bbs/blob/master/app/Http/Controllers/UsersController.php)中的$this->authorize('update', $user);
 
 - 代码生成器的使用，更方便的crud
-为此规范量身定制的代码生成器 —— [Laravel 5.x Scaffold Generator](https://github.com/summerblue/generator) 。代码生成器能让你通过执行一条 Artisan 命令，完成注册路由、新建模型、新建表单验证类、新建资源控制器以及所需视图文件等任务，不仅约束了项目开发的风格，还能极大地提高我们的开发效率
+    为此规范量身定制的代码生成器 —— [Laravel 5.x Scaffold Generator](https://github.com/summerblue/generator) 。代码生成器能让你通过执行一条 Artisan 命令，完成注册路由、新建模型、新建表单验证类、新建资源控制器以及所需视图文件等任务，不仅约束了项目开发的风格，还能极大地提高我们的开发效率
 
-在使用代码生成器之前，我们需要先整理好 topics 表的字段名称和字段类型,生成命令具体示例:
+    在使用代码生成器之前，我们需要先整理好 topics 表的字段名称和字段类型,生成命令具体示例:
 
-php artisan make:scaffold Topic --schema="title:string:index,body:text,user_id:integer:unsigned:index,category_id:integer:unsigned:index,reply_count:integer:unsigned:default(0),view_count:integer:unsigned:default(0),last_reply_user_id:integer:unsigned:default(0),order:integer:unsigned:default(0),excerpt:text,slug:string:nullable"
+    php artisan make:scaffold Topic --schema="title:string:index,body:text,user_id:integer:unsigned:index,category_id:integer:unsigned:index,reply_count:integer:unsigned:default(0),view_count:integer:unsigned:default(0),last_reply_user_id:integer:unsigned:default(0),order:integer:unsigned:default(0),excerpt:text,slug:string:nullable"
 
 - 假数据生成以及填充
-laravel还有一个让人惊艳的方法就是可以生成假数据，例如用户数据的填充,随便活跃一个论坛也不过如此吧，hh
+    laravel还有一个让人惊艳的方法就是可以生成假数据，例如用户数据的填充,随便活跃一个论坛也不过如此吧，hh
 
-[用户的数据工厂](https://github.com/shisiying/laravel-bbs/blob/master/database/factories/UserFactory.php)
-[用户的数据填充](https://github.com/shisiying/laravel-bbs/blob/master/database/seeds/UsersTableSeeder.php)
-[注册数据填充](https://github.com/shisiying/laravel-bbs/blob/master/database/seeds/DatabaseSeeder.php)
-使用命令php artisan db:seed生成数据
+    [用户的数据工厂](https://github.com/shisiying/laravel-bbs/blob/master/database/factories/UserFactory.php)
+    [用户的数据填充](https://github.com/shisiying/laravel-bbs/blob/master/database/seeds/UsersTableSeeder.php)
+    [注册数据填充](https://github.com/shisiying/laravel-bbs/blob/master/database/seeds/DatabaseSeeder.php)
+    使用命令php artisan db:seed生成数据
 
 - XSS安全问题解决
-有两种方法可以避免 XSS 攻击：
+    有两种方法可以避免 XSS 攻击：
 
-第一种，对用户提交的数据进行过滤；运用『白名单机制』对 HTML 文本信息进行 XSS 过滤,[HTMLPurifier for Laravel](https://github.com/mewebstudio/Purifier) 是对 HTMLPurifier 针对 Laravel 框架的一个封装。本章节中，我们将使用此扩展包来对用户内容进行过滤。使用方法$topic->body = clean($topic->body, 'user_topic_body');
-第二种，Web 网页显示时对数据进行特殊处理，一般使用 htmlspecialchars() 输出，Laravel 的 Blade 语法 {{ }} 会自动调用 PHP htmlspecialchars 函数来避免 XSS 攻击
+    第一种，对用户提交的数据进行过滤；运用『白名单机制』对 HTML 文本信息进行 XSS 过滤,[HTMLPurifier for Laravel](https://github.com/mewebstudio/Purifier) 是对 HTMLPurifier 针对 Laravel 框架的一个封装。本章节中，我们将使用此扩展包来对用户内容进行过滤。使用方法$topic->body = clean($topic->body, 'user_topic_body');
+    第二种，Web 网页显示时对数据进行特殊处理，一般使用 htmlspecialchars() 输出，Laravel 的 Blade 语法 {{ }} 会自动调用 PHP htmlspecialchars 函数来避免 XSS 攻击
 
 待总结...
 
