@@ -108,10 +108,69 @@ laravel是我学习的laravel的个人项目，该项目更是让我感受到了
     有两种方法可以避免 XSS 攻击：
 
     第一种，对用户提交的数据进行过滤；运用『白名单机制』对 HTML 文本信息进行 XSS 过滤,[HTMLPurifier for Laravel](https://github.com/mewebstudio/Purifier) 是对 HTMLPurifier 针对 Laravel 框架的一个封装。本章节中，我们将使用此扩展包来对用户内容进行过滤。使用方法$topic->body = clean($topic->body, 'user_topic_body');
+    
     第二种，Web 网页显示时对数据进行特殊处理，一般使用 htmlspecialchars() 输出，Laravel 的 Blade 语法 {{ }} 会自动调用 PHP htmlspecialchars 函数来避免 XSS 攻击
 
-待总结...
+- 使用队列
+    队列允许你异步执行消耗时间的任务，比如请求一个 API 并等待返回的结果的同时，我们可以同时去处理其他的任务。这样可以有效的降低请求响应的时间
 
+    [队列源码](https://github.com/shisiying/laravel-bbs/blob/master/app/Jobs/TranslateSlug.php)
+
+    配合手册食用[队列](https://laravel-china.org/docs/laravel/5.5/queues#generating-job-classes)
+
+- 消息通知
+
+    [数据库跟邮件通知](https://github.com/shisiying/laravel-bbs/blob/master/app/Notifications/TopicReplied.php)
+
+    配合手册食用[消息通知](https://laravel-china.org/docs/laravel/5.5/notifications)
+
+- 管理后台
+    使用[ Laravel Administrator ](https://github.com/summerblue/administrator)构建整个管理员后台，这是一个使用「配置信息」来快速生成管理员后台的开发理念，让你几分钟内就拥有一个可用的后台
+
+    在本[源码](https://github.com/shisiying/laravel-bbs/tree/master/config/administrator)目录中可以找到每个模型配置信息快速生成后台管理的源码
+
+- 多用户多角色权限管理
+    本项目使用[Laravel-permission]扩展包对用户权限进行轻松管理
+
+- 计划任务
+
+新建 Artisan 命令
+
+对需要定时的方法打包成一个命令，方便使用命令行的形式定时调用，使用命令生成方法, php artisan make:command CalculateActiveUser --command=larabbs:calculate-active-user
+
+在[源码](https://github.com/shisiying/laravel-bbs/blob/master/app/Console/Commands/CalculateActiveUser.php)可以看到
+
+设定计划任务
+使用调度器时，我们需要修改系统的 Cron 计划任务配置信息，在crontab中添加这一行:
+* * * * * php /home/vagrant/Code/larabbs/artisan schedule:run >> /dev/null 2>&1
+
+系统的 Cron 已经设定好了，现在 Cron 软件将会每分钟调用一次 Laravel 命令调度器，当 schedule:run 命令执行时， Laravel 会评估你的计划任务并运行预定任务。接下来将我们注册调度任务即可：
+[源码](https://github.com/shisiying/laravel-bbs/blob/master/app/Console/Kernel.php)
+
+
+- 使用缓存--用户最后活跃时间的功能
+
+    在 Web 应用中，很多时候应用的效率瓶颈会出现在『数据库系统』中，所以作为一个合格的 Web 开发工程师，我们要严格控制好我们的数据库开销。之前我们已经对一些不需要频繁修改的数据做了缓存，如『活跃用户』数据和『资源推荐』数据，以此减少数据库读取的压力。然而，在数据库中操作中，『写入』对数据库造成的压力，要远比『读取』压力高得多。
+
+    想要准确地跟踪用户的最后活跃时间，就必须在用户每一次请求服务器时都做记录，我们使用的主数据是 MySQL，也就是说每当用户访问一个页面，我们都将 MySQL 数据库里的 users 表写入数据。当我们有很多用户频繁访问站点时，这将会是数据库的一笔巨大开销。
+
+    我们可以使用 Redis 来记录用户的访问时间，Redis 运行在机器的内存上，读写效率都极快。不过为了保证数据的完整性，我们需要定期将 Redis 数据同步到数据库中，否则一旦 Redis 出问题或者执行了 Redis 清理操作，用户的『最后活跃时间』将会丢失。
+
+    基本思路如下：
+
+    记录 - 通过中间件过滤用户所有请求，记录用户访问时间到 Redis 按日期区分的哈希表；
+    同步 - 新建命令，计划任务每天运行一次此命令，将昨日哈希表里的数据同步到数据库中，并删除；
+    读取 - 优先读取当日哈希表里 Redis 里的数据，无数据则使用数据库中的值。
+
+- 模型监控器
+    Eloquent 模型会触发许多事件（Event），我们可以对模型的生命周期内多个时间点进行监控： creating, created, updating, updated, saving, saved, deleting, deleted, restoring, restored。事件让你每当有特定的模型类在数据库保存或更新时，执行代码。当一个新模型被初次保存将会触发 creating 以及 created 事件。如果一个模型已经存在于数据库且调用了 save 方法，将会触发 updating 和 updated 事件。在这两种情况下都会触发 saving 和 saved 事件。
+
+    Eloquent 观察器允许我们对给定模型中进行事件监控，观察者类里的方法名对应 Eloquent 想监听的事件。
+    
+    配合[手册](https://laravel-china.org/docs/laravel/5.5/eloquent#observers)食用
+
+- 模型访问与修改器
+    Eloquent 模型实例中获取或设置某些属性值的时候，访问器和修改器允许你对 Eloquent 属性值进行格式化，配合[手册](https://laravel-china.org/docs/laravel/5.5/eloquent-mutators#defining-an-accessor) 食用
 
 ## 怎么使用源码
 
