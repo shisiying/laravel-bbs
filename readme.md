@@ -142,7 +142,7 @@ laravel是我学习的laravel的个人项目，该项目更是让我感受到了
 
 设定计划任务
 使用调度器时，我们需要修改系统的 Cron 计划任务配置信息，在crontab中添加这一行:
-* * * * * php /home/vagrant/Code/larabbs/artisan schedule:run >> /dev/null 2>&1
+>* * * * * php /home/vagrant/Code/larabbs/artisan schedule:run >> /dev/null 2>&1
 
 系统的 Cron 已经设定好了，现在 Cron 软件将会每分钟调用一次 Laravel 命令调度器，当 schedule:run 命令执行时， Laravel 会评估你的计划任务并运行预定任务。接下来将我们注册调度任务即可：
 [源码](https://github.com/shisiying/laravel-bbs/blob/master/app/Console/Kernel.php)
@@ -170,7 +170,9 @@ laravel是我学习的laravel的个人项目，该项目更是让我感受到了
     配合[手册](https://laravel-china.org/docs/laravel/5.5/eloquent#observers)食用
 
 - 模型访问与修改器
-    Eloquent 模型实例中获取或设置某些属性值的时候，访问器和修改器允许你对 Eloquent 属性值进行格式化，配合[手册](https://laravel-china.org/docs/laravel/5.5/eloquent-mutators#defining-an-accessor) 食用
+    Eloquent 模型实例中获取或设置某些属性值的时候，访问器和修改器允许你对 Eloquent 属性值进行格式化
+    
+    配合[手册](https://laravel-china.org/docs/laravel/5.5/eloquent-mutators#defining-an-accessor) 食用
 
 ## 怎么使用源码
 
