@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel-bbs
+## 关于Laravel-bbs，项目概述
 
 laravel是我学习的laravel的个人项目，该项目更是让我感受到了laravel作为web开发的优雅性以及便利性，该项目功能主要包含了以下功能:
 
@@ -30,25 +30,27 @@ laravel是我学习的laravel的个人项目，该项目更是让我感受到了
 - 模型修改器；
 - XSS 安全防御；
 
-### 未完成功能
+### 还需开发功能
 
 - [ ]全栈帖子搜索功能
 - [ ]用户关注功能
 - [ ]实现 @某个人 功能
 - [ ]增加第三方登陆
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## Learning Laravel-bbs
+## 项目个人总结
 
 该项目主要涉及了以下知识点
+
 待总结...
 
 
-## How to use Laravel-bbs
+## 怎么使用源码
 
 - 开发环境参考[Laravel开发环境部署](https://laravel-china.org/docs/laravel-development-environment/5.5)
 - git clone https://github.com/shisiying/Laravel-bbs
+
+详细操作请按照以下
 
 ## 运行环境要求
 
@@ -182,7 +184,7 @@ npm run watch-poll
 管理员账号密码如下:
 
 ```
-username: summer@yousails.com
+username: 751401459@
 password: password
 ```
 
