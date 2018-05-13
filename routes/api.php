@@ -17,7 +17,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1',[
     'namespace'=>'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => ['serializer:array','bindings']
 ],function($api){
 
     $api->group([
@@ -48,6 +48,17 @@ $api->version('v1',[
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
 
+        //分类接口
+        $api->get('categories','CategoriesController@index')->name('api.categories.index');
+
+        //帖子列表
+        $api->get('topics','TopicsController@index')->name('api.topics.index');
+
+        //获取某个用户发布的帖子
+        $api->get('user/{user}/topics','TopicsController@userIndex')->name('api.users.topics.index');
+
+        //获取单个话题的数据
+        $api->get('topic/{topic}','TopicsController@show')->name('api.topics.show');
 
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
@@ -60,6 +71,15 @@ $api->version('v1',[
 
             //图片资源
             $api->post('images','ImagesController@store')->name('api.images.store');
+
+            //发布话题
+            $api->post('topics','TopicsController@store')->name('api.topics.store');
+
+            //修改话题
+            $api->patch('topics/{topic}','TopicsController@update')->name('api.topics.update');
+
+            //删除话题
+            $api->delete('topics/{topic}','TopicsController@destroy')->name('api.topics.destroy');
         });
     });
 });
