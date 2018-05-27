@@ -12,6 +12,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        /**
+         * 生成两个用户
+         */
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
           // 头像假数据
@@ -24,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
         ];
 
-        $users = factory(User::class)->times(10)->make()->each(function($user,$index) use($faker,$avatars){
+        $users = factory(User::class)->times(2)->make()->each(function($user,$index) use($faker,$avatars){
             // 从头像数组中随机取出一个并赋值
             $user->avatar = $faker->randomElement($avatars);
         });
@@ -37,7 +40,7 @@ class UsersTableSeeder extends Seeder
 
         //单独处理第一个用户的数据
         $user = User::find(1);
-        $user->name = 'seven';
+        $user->name = '小猴子';
         $user->email= '751401459@qq.com';
         $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->save();
@@ -46,9 +49,11 @@ class UsersTableSeeder extends Seeder
 
          // 将 2 号用户指派为『管理员』
         $user = User::find(2);
-        $user->assignRole('Maintainer');
-
-
+        $user->name = '小耳朵';
+        $user->email= '909467007@qq.com';
+        $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png?imageView2/1/w/200/h/200';
+        $user->save();
+        $user->assignRole('Founder');
 
     }
 }

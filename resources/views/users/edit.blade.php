@@ -23,10 +23,6 @@
                     <input class="form-control" type="text" name="name" id="name-field" value="{{old('name',$user->name)}}">
                 </div>
 
-                <div class="form-group">
-                    <label for="email-field">邮箱</label>
-                    <input type="text" class="form-control" name="email" id="email-field" value="{{old('email',$user->email)}}">
-                </div>
 
                 <div class="form-group">
                     <label for="introduction-field">个人简介</label>

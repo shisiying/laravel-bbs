@@ -8814,11 +8814,9 @@ body {
 /* header */
 
 .navbar-static-top {
-  border-color: #e7e7e7;
   background-color: #fff;
   -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
           box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  border-top: 4px solid #f46660;
   margin-bottom: 40px;
   margin-top: 0px;
 }
@@ -8839,36 +8837,41 @@ body {
 /* Sticky footer styles */
 
 html {
-  position: relative;
-  min-height: 100%;
+  margin: 0;
+  /*清除默认样式*/
+  padding: 0;
+  height: 100%;
 }
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 0px;
+  min-height: 100%;
+  padding: 0;
+  position: relative;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
+  padding-top: 20px;
+  color: #8A8A8A;
+}
+
+.footer a {
+  color: #8A8A8A;
+}
+
+.footer i {
+  font-size: 110%;
+}
+
+.footer {
+  background-color: #fff;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #000;
 }
 
-.footer .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.footer .container p {
-  margin: 19px 0;
-  color: #c1c1c1;
-}
-
-.footer .container p a {
-  color: inherit;
+.footer-sponsor-link {
+  margin-bottom: 5px;
+  display: inline-block;
 }
 
 /* User register page */
@@ -8908,6 +8911,56 @@ body {
 }
 
 /* Topic Index Page */
+
+.topics-page {
+  font-size: 15px;
+  padding-left: 8px;
+}
+
+.topics-page a {
+  color: #444444;
+}
+
+.topics-page .meta {
+  font-size: 0.9em;
+  color: #b3b3b3;
+}
+
+.topics-page .meta a {
+  color: #b3b3b3;
+}
+
+.topbanner {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.projects-card {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.projects-card .thumbnail {
+  border-radius: 0px;
+  -webkit-box-shadow: 0 1px 5px #c3c3c3;
+          box-shadow: 0 1px 5px #c3c3c3;
+  padding: 0px;
+}
+
+.projects-card .caption {
+  text-align: center;
+}
+
+.projects-card .card-title a {
+  font-size: 1.2em;
+  color: #676464;
+}
+
+.projects-card .card-description {
+  height: 40px;
+  margin-top: 15px;
+  color: #909090;
+}
 
 .topics-index-page .topic-list .nav > li > a,
 .categories-show-page .topic-list .nav > li > a,
@@ -9005,5 +9058,39 @@ body {
   color: #797878;
   line-height: 26px;
   font-size: 0.9em;
+}
+
+/* index */
+
+.site-intro {
+  line-height: 26px;
+}
+
+.rm-link-color a {
+  color: #606060;
+}
+
+.sidebar-sponsor-link {
+  line-height: 66px;
+  margin-bottom: 7px;
+  display: inline-block;
+}
+
+.sidebar-sponsor-box {
+  padding: 7px;
+  padding-top: 8px;
+  padding-bottom: 0px;
+}
+
+.sidebar-sponsor-box hr {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border: 0;
+  border-top: 1px solid #dde2e8;
+}
+
+.helpblock.list li {
+  line-height: 30px;
+  margin-bottom: 0px;
 }
 

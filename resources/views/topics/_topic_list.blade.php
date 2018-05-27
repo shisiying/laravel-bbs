@@ -2,7 +2,7 @@
 
     <ul class="media-list">
         @foreach($topics as $topic)
-            <li class="media">
+            <li class="media list-group-item ">
 
                 <div class="media-left">
                     <a href="{{route('users.show',[$topic->user_id])}}"></a>

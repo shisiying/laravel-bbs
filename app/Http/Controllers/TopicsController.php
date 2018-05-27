@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
 use Auth;
 use App\Models\User;
 use App\Models\Link;
 use App\Handlers\ImageUploadHandler;
+use XHZ\Markdown\Markdown;
 
 
 class TopicsController extends Controller
@@ -24,8 +24,9 @@ class TopicsController extends Controller
 	{
 		$topics = Topic::withOrder($request->order)->paginate(30);
         $active_users = $user->getActiveUsers();
+        $banners = $link->allByPosition();
         $links = $link->getAllCached();
-		return view('topics.index', compact('topics','active_users','links'));
+		return view('topics.index', compact('topics','active_users','links','banners'));
 	}
 
     public function show(Request $request,Topic $topic)
@@ -46,8 +47,11 @@ class TopicsController extends Controller
 
 	public function store(TopicRequest $request, Topic $topic)
 	{
+        $markdown = new Markdown;
 
-        $topic->fill($request->all());
+        $topic->body = $markdown->convertMarkdownToHtml($request->body);
+        $topic->title =$request->title;
+        $topic->category_id = $request->category_id;
         $topic->user_id = Auth::id();
         $topic->save();
 		return redirect()->to($topic->link())->with('message', '成功创建话题！');
@@ -55,16 +59,25 @@ class TopicsController extends Controller
 
 	public function edit(Topic $topic)
 	{
+        $markdown = new Markdown;
+
         $this->authorize('update', $topic);
         $categories = Category::all();
-        $this->authorize('update', $topic);
+        $topic->body = $markdown->convertHtmlToMarkdown($topic->body);
 		return view('topics.create_and_edit', compact('topic','categories'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
-		$topic->update($request->all());
+        $markdown = new Markdown;
+
+        $request->body = $markdown->convertMarkdownToHtml($request->body);
+		$topic->update([
+		    'title'=>$request->title,
+            'body'=>$request->body,
+            'category_id'=>$request->category_id,
+        ]);
 
 		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
 	}
@@ -75,7 +88,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', '删除成功！');
+		return redirect()->route('topics')->with('message', '删除成功！');
 	}
 
     public function uploadImage(Request $request,ImageUploadHandler $uploader)

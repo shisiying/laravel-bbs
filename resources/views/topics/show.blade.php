@@ -7,7 +7,6 @@
 
 <div class="row">
 
-
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -45,16 +44,17 @@
             </div>
         </div>
 
-
+        @if($topic->replies()->count()>0)
         <div class="panel panel-default topic-reply">
             <div class="panel-body">
                 @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
              </div>
         </div>
+        @endif
 
         <div class="panel panel-default topic-reply">
             <div class="panel-body">
-                @includeWhen(Auth::check(),'topics._reply_box',['topic'=>$topic])
+                @include('topics._reply_box',['topic'=>$topic])
              </div>
         </div>
 

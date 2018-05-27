@@ -17,6 +17,8 @@ class CategoriesController extends Controller
         $topics = Topic::withOrder($request->order)->where('category_id', $category->id)->paginate(20);
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
-        return view('topics.index',compact('topics','category','active_users','links'));
+        $categories = Category::all();
+        $banners = $link->allByPosition();
+        return view('topics.index',compact('topics','category','active_users','links','categories','banners'));
     }
 }

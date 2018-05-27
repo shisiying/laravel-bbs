@@ -2,5 +2,11 @@
 @section('title','首页')
 
 @section('content')
-    <h1>这里是首页</h1>
+
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            小猴子与小耳朵 是高品质的分享社区，Powered By sevenshi
+        </div>
+    </div>
+    @include('layouts.topbanner')
 @stop

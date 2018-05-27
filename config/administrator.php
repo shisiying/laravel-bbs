@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => 'larabbs',
+    'title' => '小猴子与小耳朵',
 
     /*
      * The path to your model config directory
@@ -68,6 +68,8 @@ return array(
             'categories',
             'topics',
             'replies',
+            'notes',
+            'chapters'
         ],
         '站点管理'=>[
             'settings.site',

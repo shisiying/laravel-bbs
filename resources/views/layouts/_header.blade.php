@@ -15,7 +15,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Web安全社区
+                <font color="#ff6347">小猴子与小耳朵</font>
             </a>
 
         </div>
@@ -24,11 +24,11 @@
          <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
            <ul class="nav navbar-nav">
-                <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">话题</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a href="{{ route('categories.show', 1) }}">writeup</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a href="{{ route('categories.show', 2) }}">教程</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a href="{{ route('categories.show', 3) }}">问答</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a href="{{ route('categories.show', 4) }}">公告</a></li>
+                <li class="{{ active_class(if_route('topics')) }}"><a href="{{ route('topics') }}">角落</a></li>
+                <li class="{{ active_class(if_route('docs')) }}"><a href="{{ route('docs') }}">笔记</a></li>
+                <li class="{{ active_class(if_route('life')) }}"><a href="{{ route('life') }}">生活</a></li>
+                <li class="{{ active_class(if_route('works') ) }}"><a href="{{ route('works') }}">作品集</a></li>
+                <li class="{{ active_class(if_route('about') ) }}"><a href="{{ route('about') }}">关于</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -39,12 +39,13 @@
                     <li><a href="{{route('register')}}">注册</a></li>
                 @else
 
-
+                    @can('manage_contents')
                     <li>
-                        <a href="{{ route('topics.create') }}">
+                        <a href="{{ route('article.create') }}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
                     </li>
+                    @endcan
 
                     {{--消息通知标记--}}
                     <li>
