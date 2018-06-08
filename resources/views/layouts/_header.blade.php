@@ -15,7 +15,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <font color="#ff6347">小猴子与小耳朵</font>
+                <font color="black">小猴子与</font><font color="#ff6347">小耳朵</font>
             </a>
 
         </div>
@@ -35,16 +35,31 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
+                    <li>
+                        <form method="GET" action="http://phphub5.app/search" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                            <div class="form-group">
+                                <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text" value="">
+
+                            </div>
+                        </form>
+                    </li>
                     <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{route('register')}}">注册</a></li>
                 @else
-
-                    @can('manage_contents')
                     <li>
-                        <a href="{{ route('article.create') }}">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </a>
+                        <form method="GET" action="{{route('search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                            <div class="form-group">
+                                <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text" value="">
+
+                            </div>
+                        </form>
                     </li>
+                    @can('manage_contents')
+                        <li>
+                        <a href="{{ route('article.create') }}">
+                            <span class="fa fa-paint-brush text-md" aria-hidden="true"></span>
+                        </a>
+                        </li>
                     @endcan
 
                     {{--消息通知标记--}}

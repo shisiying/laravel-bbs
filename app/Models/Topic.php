@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Models;
+use Laravel\Scout\Searchable;
+
 
 class Topic extends Model
 {
+    use Searchable;
+
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
     public function category()
@@ -56,4 +60,13 @@ class Topic extends Model
         return $this->hasMany(Reply::class);
     }
 
+    /**
+     * 索引的字段
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->only('id', 'title', 'body');
+    }
 }

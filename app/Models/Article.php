@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 
 class Article extends Model
 {
+    use Searchable;
     use SoftDeletes;
     protected $fillable = ['body','title','chapter_id','link','type','author','user_id'];
     protected $dates = ['deleted_at'];
@@ -20,6 +22,16 @@ class Article extends Model
     {
         return $this->belongsTo('App\Models\User');
 
+    }
+
+    /**
+     * 索引的字段
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->only('id', 'title', 'body');
     }
 
 }

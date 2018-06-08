@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function (){
     Route::put('articles/{article}', 'ArticleController@update')->name('article.update');
     Route::get('articles/{article}/edit', 'ArticleController@edit')->name('article.edit');
     Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
+
+    Route::get('/search', 'PagesController@search')->name('search');
+
 });
 
 

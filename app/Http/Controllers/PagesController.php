@@ -51,7 +51,7 @@ class PagesController extends Controller
     }
     public function life()
     {
-        $lifes = Article::query()->where(['type'=>1,'chapter_id'=>1])->get();
+        $lifes = Article::query()->where(['type'=>1,'chapter_id'=>1])->orderBy('created_at','desc')->get();
         return view('life.index',compact('lifes'));
     }
 
@@ -67,5 +67,14 @@ class PagesController extends Controller
     {
         $article = Article::query()->where(['type'=>0,'chapter_id'=>3])->first();
         return view('about.index',compact('article'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = clean($request->input('q'), 'search_q');
+//        Article::search($query)->paginate(5)->toArray();
+        $topics= Topic::search($query)->paginate(5);
+//
+        return view('pages.search', compact( 'query', 'topics'));
     }
 }

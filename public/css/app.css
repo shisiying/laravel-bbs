@@ -9094,3 +9094,28 @@ body {
   margin-bottom: 0px;
 }
 
+.topnav .navbar-form .form-control {
+  height: 45px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 14px;
+  line-height: 1em;
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  margin-top: -5px;
+  margin-bottom: -4px;
+  color: inherit;
+}
+
+.navbar-form {
+  width: auto;
+  border: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+

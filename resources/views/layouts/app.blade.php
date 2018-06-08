@@ -10,13 +10,21 @@
     <title>@yield('title', 'XHZ-XED') - {{ setting('site_name', 'XHZ-XED') }}</title>
     <meta name="description" content="@yield('description', setting('seo_description', '小猴子与小耳朵。'))" />
     <meta name="keyword" content="@yield('keyword', setting('seo_keyword', '小猴子与小耳朵角落'))" />
+    <link rel="icon" href="{{ asset('xhzyxed.ico') }}">
 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel='stylesheet' href='https://unpkg.com/nprogress@0.2.0/nprogress.css'/>
+
     <style>
-        .fixed-bottom {position: fixed;bottom: 0;width:100%;}
+        #scrollUp {
+            background-image: url({{asset("img/top.png")}});
+            bottom: 20px;
+            right: 20px;
+            width: 38px;    /* Width of image */
+            height: 38px;   /* Height of image */
+        }
     </style>
     @yield('styles')
 </head>
@@ -25,15 +33,16 @@
 
         @include('layouts._header')
 
-        <div class="container main-page">
+        <div class="container main-page" style="min-height: 700px">
             @include('layouts._message')
 
             @yield('content')
 
         </div>
+        <div class="row">
+            @include('layouts._footer')
 
-        @include('layouts._footer')
-
+        </div>
 
     </div>
 
@@ -44,8 +53,8 @@
     <!-- Scripts-->
 
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/jquery.pjax.js')}}"></script>
-    <script src='https://unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+    <script src="{{asset('js/jquery.highlight.js')}}"></script>
+    {{--<script src='https://unpkg.com/nprogress@0.2.0/nprogress.js'></script>--}}
     <script type="text/javascript">
         $(function(){
             function footerPosition(){
@@ -61,20 +70,40 @@
             $(window).resize(footerPosition);
         });
     </script>
-    {{--<script type="text/javascript">--}}
-        {{--$(document).ready(function()--}}
-        {{--{--}}
-            {{--$(document).pjax('a', 'body');--}}
-            {{--$.pjax.defaults.timeout = 1600--}}
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+//            $(document).pjax('a', 'body');
+//            $.pjax.defaults.timeout = 1600;
+//
+//            $(document).on('pjax:start', function() {
+//                NProgress.start();
+//
+//            });
+//            $(document).on('pjax:end', function() {
+//                NProgress.done();
+//            });
 
-            {{--$(document).on('pjax:start', function() {--}}
-                {{--NProgress.start();--}}
-            {{--});--}}
-            {{--$(document).on('pjax:end', function() {--}}
-                {{--NProgress.done();--}}
-            {{--});--}}
-        {{--});--}}
-    {{--</script>--}}
+            $.scrollUp({
+                scrollName: 'scrollUp',      // Element ID
+                scrollDistance: 300,         // Distance from top/bottom before showing element (px)
+                scrollFrom: 'top',           // 'top' or 'bottom'
+                scrollSpeed: 300,            // Speed back to top (ms)
+                easingType: 'linear',        // Scroll to top easing (see http://easings.net/)
+                animation: 'fade',           // Fade, slide, none
+                animationSpeed: 200,         // Animation speed (ms)
+                scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
+                scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
+                scrollText: false,           // Text for element, can contain HTML
+                scrollTitle: "返回顶部",       // Set a custom <a> title if required.
+                scrollImg: true,             // Set true to use image
+                activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+                zIndex: 2147483647           // Z-Index for the overlay
+            });
+        });
+
+
+    </script>
     @yield('scripts')
 </body>
 </html>

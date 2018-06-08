@@ -13,6 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
 	{
+
+        /**
+         * 增加内存防止中文分词报错
+         */
+        ini_set('memory_limit', "256M");
+
 		\App\Models\User::observe(\App\Observers\UserObserver::class);
 		\App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
 		\App\Models\Topic::observe(\App\Observers\TopicObserver::class);

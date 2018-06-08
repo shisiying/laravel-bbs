@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Models\Article;
@@ -39,7 +40,7 @@ class ArticleController extends Controller
             }
             Article::create([
                 'body' => $body,
-                'title'=>$request->title,
+                'title'=>'生活'.rand(0,99999),
                 'chapter_id'=>$request->chapter_id,
                 'link'=>$request->link,
                 'type'=>$request->type,
@@ -68,7 +69,11 @@ class ArticleController extends Controller
         $banners = $link->allByPosition();
         $links = $link->getAllCached();
 
-        return view('docs.show',compact('article','banners','links'));
+        $note_id = $article->chapter->note->id;
+        $note = Note::find($note_id);
+
+
+        return view('docs.show',compact('article','banners','links','note'));
     }
 
     public function edit(Article $article)
@@ -86,10 +91,8 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request,Article $article)
     {
-
         $this->authorize('update',$article);
         $markdown = new Markdown;
-        $request->chapter_id =$request->type;
         $body = $markdown->convertMarkdownToHtml($request->body);
         if ($request->type==2){
             $body = strip_tags($body,'<i>,<br>');

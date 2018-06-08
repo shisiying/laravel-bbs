@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "107238d8d26f4f6649a01c9670f0da8e",
+    "content-hash": "ce27678bfba113382996fd57df234518",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -865,6 +865,56 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+            "name": "fukuball/jieba-php",
+            "version": "0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fukuball/jieba-php.git",
+                "reference": "a5980dc88ae98a261a0bdb1130be14d0136b373f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/fukuball/jieba-php/a5980dc88ae98a261a0bdb1130be14d0136b373f.zip",
+                "reference": "a5980dc88ae98a261a0bdb1130be14d0136b373f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.4.1",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "1.5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/class/Jieba.php",
+                    "src/class/JiebaAnalyse.php",
+                    "src/class/Finalseg.php",
+                    "src/class/Posseg.php",
+                    "src/vendor/multi-array/MultiArray.php",
+                    "src/vendor/multi-array/Factory/MultiArrayFactory.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fukuball",
+                    "email": "fukuball@gmail.com"
+                }
+            ],
+            "description": "結巴中文分詞（PHP 版本）：做最好的 PHP 中文分詞、中文斷詞組件",
+            "keywords": [
+                "Jieba",
+                "php"
+            ],
+            "time": "2017-11-22T10:02:12+00:00"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.3",
             "source": {
@@ -1466,6 +1516,71 @@
                 "queue"
             ],
             "time": "2018-03-13T18:00:18+00:00"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v3.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "154beb9255cef7e341c5838824ed1234e71e194d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/laravel/scout/154beb9255cef7e341c5838824ed1234e71e194d.zip",
+                "reference": "154beb9255cef7e341c5838824ed1234e71e194d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "~5.4",
+                "illuminate/contracts": "~5.4",
+                "illuminate/database": "~5.4",
+                "illuminate/pagination": "~5.4",
+                "illuminate/queue": "~5.4",
+                "illuminate/support": "~5.4",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "algolia/algoliasearch-client-php": "^1.10",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^1.10)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2018-01-26T22:15:03+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2739,6 +2854,58 @@
             "time": "2018-04-23T19:06:39+00:00"
         },
         {
+            "name": "spatie/laravel-pjax",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-pjax.git",
+                "reference": "5c8d3b147bbdb40ecd794dee3035b4c05734ef35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/spatie/laravel-pjax/5c8d3b147bbdb40ecd794dee3035b4c05734ef35.zip",
+                "reference": "5c8d3b147bbdb40ecd794dee3035b4c05734ef35",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": "^5.5.0|^7.0",
+                "symfony/css-selector": "^2.7|^3.0|^4.0",
+                "symfony/dom-crawler": "^2.7|^3.0|^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Pjax\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A pjax middleware for Laravel 5",
+            "homepage": "https://github.com/spatie/laravel-pjax",
+            "keywords": [
+                "laravel-pjax",
+                "pjax",
+                "spatie"
+            ],
+            "time": "2018-02-06T13:21:42+00:00"
+        },
+        {
             "name": "summerblue/administrator",
             "version": "v1.1.7",
             "source": {
@@ -3031,6 +3198,63 @@
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
             "time": "2018-05-16T14:03:39+00:00"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v4.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "cf13fe774cabf4d32e8e234ec6efe7821e8b6ec1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/symfony/dom-crawler/cf13fe774cabf4d32e8e234ec6efe7821e8b6ec1.zip",
+                "reference": "cf13fe774cabf4d32e8e234ec6efe7821e8b6ec1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "~3.4|~4.0"
+            },
+            "suggest": {
+                "symfony/css-selector": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DomCrawler Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-05-01T23:00:51+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3725,6 +3949,62 @@
             "time": "2018-04-26T12:42:15+00:00"
         },
         {
+            "name": "teamtnt/tntsearch",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teamtnt/tntsearch.git",
+                "reference": "5e25eec81de42617001fa2ef8fc3f38d9f9263f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/teamtnt/tntsearch/5e25eec81de42617001fa2ef8fc3f38d9f9263f1.zip",
+                "reference": "5e25eec81de42617001fa2ef8fc3f38d9f9263f1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-pdo_sqlite": "*",
+                "ext-sqlite3": "*",
+                "php": "~5.5|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TeamTNT\\TNTSearch\\": "src"
+                },
+                "files": [
+                    "helper/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nenad Tičarić",
+                    "email": "nticaric@gmail.com",
+                    "homepage": "http://www.tntstudio.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fully featured full text search engine written in PHP",
+            "homepage": "https://github.com/teamtnt/tntsearch",
+            "keywords": [
+                "Fuzzy search",
+                "fulltext",
+                "geosearch",
+                "search",
+                "teamtnt",
+                "tntsearch"
+            ],
+            "time": "2018-06-03T13:46:42+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.1",
             "source": {
@@ -3770,6 +4050,61 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "vanry/laravel-scout-tntsearch",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vanry/laravel-scout-tntsearch.git",
+                "reference": "0670037f30e8edf6afbe0e09e7adb845a17144b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/vanry/laravel-scout-tntsearch/0670037f30e8edf6afbe0e09e7adb845a17144b1.zip",
+                "reference": "0670037f30e8edf6afbe0e09e7adb845a17144b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.4",
+                "illuminate/support": "~5.4",
+                "laravel/scout": "~3.0",
+                "php": ">=5.6.4",
+                "teamtnt/tntsearch": "~1.0"
+            },
+            "suggest": {
+                "fukuball/jieba-php": "Required to use the Jieba tokenizer (~0.25).",
+                "lmz/phpanalysis": "Required to use the PhpAnalysis tokenizer (~1.0).",
+                "vanry/scws": "Required to use the SCWS tokenizer (~1.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Vanry\\Scout\\TNTSearchScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vanry\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "vanry",
+                    "email": "ivanry@163.com"
+                }
+            ],
+            "description": "包含中文分词的 Laravel Scout TNTSearch 驱动，支持 scws, phpanalysis 和 jieba 分词。",
+            "time": "2018-04-27T02:19:56+00:00"
         },
         {
             "name": "venturecraft/revisionable",
