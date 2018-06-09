@@ -71,10 +71,15 @@ class PagesController extends Controller
 
     public function search(Request $request)
     {
-        $query = clean($request->input('q'), 'search_q');
-//        Article::search($query)->paginate(5)->toArray();
-        $topics= Topic::search($query)->paginate(5);
-//
+        $query = clean($request->input('query'), 'search_q');
+        $articles = Article::search($query)->paginate(20);
+        return view('pages.search', compact( 'query','articles'));
+    }
+
+    public function topicSearch(Request $request)
+    {
+        $query = clean($request->input('query'), 'search_q');
+        $topics= Topic::search($query)->paginate(20);
         return view('pages.search', compact( 'query', 'topics'));
     }
 }

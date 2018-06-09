@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
 
     Route::get('/search', 'PagesController@search')->name('search');
+    Route::get('topic/search', 'PagesController@topicSearch')->name('topics.search');
+
 
 });
 

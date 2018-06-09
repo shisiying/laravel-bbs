@@ -35,25 +35,48 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li>
-                        <form method="GET" action="http://phphub5.app/search" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
-                            <div class="form-group">
-                                <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text" value="">
+                    @if(route_class() =='topics')
+                        <li>
+                            <form method="GET" action="{{route('topics.search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                                <div class="form-group">
+                                    <input class="form-control search-input mac-style" placeholder="搜索角落" name="query" type="text" value="">
 
-                            </div>
-                        </form>
-                    </li>
+                                </div>
+                            </form>
+                        </li>
+                    @else
+                        <li>
+                            <form method="GET" action="{{route('search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                                <div class="form-group">
+                                    <input class="form-control search-input mac-style" placeholder="搜索笔记" name="query" type="text" value="">
+
+                                </div>
+                            </form>
+                        </li>
+                    @endif
                     <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{route('register')}}">注册</a></li>
                 @else
+
+                    @if(route_class() =='topics')
+                        <li>
+                            <form method="GET" action="{{route('topics.search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                                <div class="form-group">
+                                    <input class="form-control search-input mac-style" placeholder="搜索角落" name="query" type="text" value="">
+
+                                </div>
+                            </form>
+                        </li>
+                    @else
                     <li>
                         <form method="GET" action="{{route('search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
                             <div class="form-group">
-                                <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text" value="">
+                                <input class="form-control search-input mac-style" placeholder="搜索笔记" name="query" type="text" value="">
 
                             </div>
                         </form>
                     </li>
+                    @endif
                     @can('manage_contents')
                         <li>
                         <a href="{{ route('article.create') }}">
