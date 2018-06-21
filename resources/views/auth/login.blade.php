@@ -86,8 +86,8 @@
                             <div class="alert alert-info">
                                 使用以下方法注册或者登录（<a class="forget-password" href="{{ route('password.request') }}">忘记密码？</a>）
                             </div>
-                            <a class="btn btn-lg btn-default btn-block" id="login-required-submit" href="#"><i class="fa fa-github-alt"></i> 用Github登陆</a>
-                            <a class="btn btn-lg btn-default btn-block" href="#"><i class="fa fa-weixin" ></i> 用微信登陆</a>
+                            <a class="btn btn-lg btn-default btn-block" id="login-required-submit" href="{{route('auth.oauth',['driver'=>'github'])}}"><i class="fa fa-github-alt"></i> 用Github登陆</a>
+                            <a class="btn btn-lg btn-default btn-block" href="{{route('auth.oauth',['driver'=>'wechat'])}}"><i class="fa fa-weixin" ></i> 用微信登陆</a>
                         </fieldset>
                     </form>
 

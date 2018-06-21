@@ -19,13 +19,16 @@ Route::get('topics', 'PagesController@community')->name('topics');
 Route::get('docs', 'PagesController@docs')->name('docs');
 Route::get('life', 'PagesController@life')->name('life');
 Route::get('works', 'PagesController@works')->name('works');
-Route::get('about', 'PagesController@about')->name('about');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 Route::get('articles/{article}', 'ArticleController@show')->name('article.show');
 Route::get('notes/{note}', 'NoteController@show')->name('notes');
+Route::get('auth/oauth', 'Auth\AuthController@oauth')->name('auth.oauth');
+Route::get('auth/oauthcallback', 'Auth\AuthController@oauthcallback')->name('auth.oauthcallback');
+Route::get('auth/wechatcallback', 'Auth\AuthController@wechatcallback')->name('auth.wechatcallback');
 
 
 Route::middleware(['auth'])->group(function (){
+    Route::get('about', 'PagesController@about')->name('about');
     Route::resource('users','UsersController',['only'=>['show','update','edit']]);
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
     Route::resource('replies', 'RepliesController', ['only' => [ 'store','destroy']]);
@@ -41,7 +44,6 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/search', 'PagesController@search')->name('search');
     Route::get('topic/search', 'PagesController@topicSearch')->name('topics.search');
-
 
 });
 

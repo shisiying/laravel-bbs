@@ -182,6 +182,8 @@ return [
          */
         Laravel\Scout\ScoutServiceProvider::class,
         Vanry\Scout\TNTSearchScoutServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class, // add
+
     ],
 
     /*
