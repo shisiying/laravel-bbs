@@ -20,7 +20,7 @@ Route::get('docs', 'PagesController@docs')->name('docs');
 Route::get('life', 'PagesController@life')->name('life');
 Route::get('works', 'PagesController@works')->name('works');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
-Route::get('articles/{article}', 'ArticleController@show')->name('article.show');
+Route::get('articles/{article}', 'ArticleController@show')->name('article.show')->middleware('can:view,article');
 Route::get('notes/{note}', 'NoteController@show')->name('notes');
 Route::get('auth/oauth', 'Auth\AuthController@oauth')->name('auth.oauth');
 Route::get('auth/oauthcallback', 'Auth\AuthController@oauthcallback')->name('auth.oauthcallback');
@@ -41,9 +41,13 @@ Route::middleware(['auth'])->group(function (){
     Route::put('articles/{article}', 'ArticleController@update')->name('article.update');
     Route::get('articles/{article}/edit', 'ArticleController@edit')->name('article.edit');
     Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
+    Route::get('getchapters', 'ArticleController@getChapters')->name('chapters.getChapters');
 
     Route::get('/search', 'PagesController@search')->name('search');
     Route::get('topic/search', 'PagesController@topicSearch')->name('topics.search');
+
+    Route::get('note/purchase/{note}', 'OrderController@purchase')->name('order.purchase');
+
 
 });
 

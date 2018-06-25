@@ -34,6 +34,14 @@ return [
             'title' =>'是否显示',
             'sortable' => false,
         ],
+        'need_pay'=>[
+            'title' =>'是否收费',
+            'sortable' => false,
+        ],
+        'price'=>[
+            'title' =>'单价',
+            'sortable' => false,
+        ],
         'created_at',
         'operation' => [
             'title'  => '管理',
@@ -57,6 +65,17 @@ return [
         'cover'=>[
             'title'=>'封面图(七牛图片链接)',
             'type'=>'text'
+        ],
+        'price'=>[
+            'title'=>'单价',
+            'type'=>'text'
+        ],
+        'need_pay'=>[
+            'title' =>'是否收费',
+            'type'=>'enum',
+            'options'  => [
+                '0','1'
+            ],
         ],
         'is_recommended'=>[
             'title' =>'是否显示',

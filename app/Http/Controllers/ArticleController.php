@@ -22,7 +22,8 @@ class ArticleController extends Controller
     {
         $this->authorize('update',$article);
        $chapters = Chapter::query()->where('id','>',2)->get();
-       return view('docs.create_and_edit',compact('article','chapters'));
+       $notes = Note::all();
+       return view('docs.create_and_edit',compact('article','chapters','notes'));
 
     }
 
@@ -81,12 +82,14 @@ class ArticleController extends Controller
         $this->authorize('update', $article);
         $markdown = new Markdown;
         $chapters = Chapter::all();
+        $notes = Note::all();
+
         //作品集类型
         if ($article->type!=2){
             $article->body = $markdown->convertHtmlToMarkdown($article->body);
         }
 
-        return view('docs.create_and_edit', compact('article','chapters'));
+        return view('docs.create_and_edit', compact('article','chapters','notes'));
     }
 
     public function update(ArticleRequest $request,Article $article)
@@ -115,6 +118,15 @@ class ArticleController extends Controller
         $this->authorize('update', $article);
         $article->delete();
         return redirect()->route('root')->with('message', '删除成功！');
+    }
+
+    public function getChapters(Request $request)
+    {
+        if (is_numeric($request->note_id)){
+            $chapters = json_encode(Chapter::query()->where('note_id','=',$request->note_id)->get()->toArray());
+        }
+        echo $chapters;
+
     }
 
 }

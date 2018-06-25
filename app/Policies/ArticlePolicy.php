@@ -21,4 +21,12 @@ class ArticlePolicy extends Policy
             return true;
         }
     }
+
+    public function view(User $user, Article $article)
+    {
+        //只有阅读权限的人或者笔记免费的才可以观看
+        if ($user->can('read_article') || $article->chapter->note->need_pay==0) {
+            return true;
+        }
+    }
 }

@@ -25,17 +25,16 @@
                     @if($article->id)
                         <form action="{{route('article.update',$article->id)}}" method="POST" accept-charset="UTF-8">
                             <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="chapter_id" id="chapter_id" value="{{$article->chapter_id}}">
                             @else
                                 <form action="{{route('article.store')}}" method="POST" accept-charset="UTF-8">
                                     @endif
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                                     <div class="form-group" id="notice">
                                         <p class="alert alert-success">要添加笔记，请点击<a href="/admin/notes">添加新笔记</a></p>
                                         <p class="alert alert-info">要添加章节，请点击<a href="/admin/chapters">添加新章节</a></p>
                                     </div>
-
 
                                     <div class="form-group">
                                         <select class="form-control" name="type" id="typeSelect" required>
@@ -59,14 +58,34 @@
                                         <input class="form-control"  id="article-title" type="text" name="title" id="title-field" value="{{ old('title', $article->title ) }}" placeholder="请填写文章标题" required />
                                     </div>
 
-                                    <div class="form-group" id="chapter">
-                                        <select class="form-control" name="chapter_id" required>
-                                            <option value="" hidden disabled {{$article->id?'':'selected'}}>请选择章节</option>
-                                            @foreach($chapters as $value)
-                                                <option value="{{ $value->id }}" {{ $article->chapter_id == $value->id ? 'selected' : '' }}>{{ $value->name }}</option>
+                                    @if($article->id)
+                                    <div class="form-group" >
+                                        <select class="form-control" id="note" required>
+                                            <option value="" hidden disabled {{$article->id?'':'selected'}}>请选择笔记</option>
+                                            @foreach($notes as $note)
+                                                <option value="{{ $note->id }}" {{$article->chapter->note->id == $note->id ? 'selected' : ''}}>{{$note->name}}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                        @else
 
+                                        <div class="form-group">
+                                            <select class="form-control" id="note"  required>
+                                                <option value="" hidden disabled {{$article->id?'':'selected'}}>请选择笔记</option>
+                                                @foreach($notes as $note)
+                                                    <option value="{{ $note->id }}">{{$note->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    @endif
+                                    <div class="form-group" id="chapter">
+                                        <select class="form-control" name="chapter_id" id="chapter_select" required>
+                                            <option value="" hidden disabled {{$article->id?'':'selected'}}>请选择章节</option>
+                                            {{--@foreach($chapters as $value)--}}
+                                                {{--<option value="{{ $value->id }}" {{ $article->chapter_id == $value->id ? 'selected' : '' }}>{{$value->note->name}}--{{ $value->name }}</option>--}}
+                                            {{--@endforeach--}}
+                                        </select>
                                     </div>
 
                                     <div id="reply_notice" class="box">
@@ -88,7 +107,6 @@
                                     <div class="well well-sm">
                                         <button type="submit" id="article-submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
                                     </div>
-
                                 </form>
                 </div>
             </div>
@@ -193,6 +211,7 @@
                 var index = $(this).children('option:selected').val();
                 if(index==1){
                     $('#chapter').hide();
+                    $('#note').hide();
                     $('#chapter').children('select').attr('required',false);
 
                     $('#title').hide();
@@ -207,6 +226,7 @@
 
                 }else if(index==2) {
                     $('#chapter').hide();
+                    $('#note').hide();
                     $('#chapter').children('select').attr('required',false);
 
                     $('#notice').hide();
@@ -220,8 +240,10 @@
                     $('#authorSelect').children('input').attr('required','required');
 
                 }else{
-                        $('#chapter').show();
-                        $('#chapter').children('select').attr('required','required');
+                    $('#chapter').show();
+                    $('#note').show();
+
+                    $('#chapter').children('select').attr('required','required');
 
                         $('#title').show();
                         $('#title').children('input').attr('required','required');
@@ -238,6 +260,26 @@
 
             $("#typeSelect").trigger("change",[{{ $article->type }}]);
 
+            $("#note").change(function () {
+                $('#chapter_select').empty();
+                var index = $(this).children('option:selected').val();
+                $.get('{{route('chapters.getChapters')}}',{'note_id':index},function(msg){
+                    var result = new Array();
+                    var chapter_id = $('#chapter_id').val();
+                    result = eval(msg);
+                    var newhtml = '';
+                    for(x in result)
+                    {
+                        var select = '';
+                        if (chapter_id==result[x]['id']){
+                            select = 'selected';
+                        }
+                        newhtml += "<option value="+result[x]['id']+select+">"+result[x]['name']+"</option>";
+                    }
+                    $('#chapter_select').append(newhtml);
+                });
+            });
+            $("#note").trigger("change",[{{ $article->type }}]);
         });
 
 

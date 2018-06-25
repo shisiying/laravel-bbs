@@ -29,6 +29,9 @@
             color: #0088cc;
             line-height: 24px;
         }
+        .ui.text.orange {
+            color: #F2711C !important;
+        }
     </style>
 @stop
 @section('content')
@@ -53,10 +56,17 @@
                                         <div class="description">
                                             {{$note->description}}
                                         </div>
+                                        @if($note->need_pay==1)
+                                        <p><b class="ui text orange">售价：{{$note->price}}元</b></p>
+                                        @endif
+
                                         <div class="extra">
                                             @if(isset($note->chapters[0]->articles[0]))
-                                            {{--<a class="ui button teal login-required" href="https://fsdhub.com/books/laravel-essential-training-5.5/purchase"><i class="icon shop"></i>  购买本书</a>--}}
-                                            <a class="ui button teal" href="{{route('article.show',$note->chapters[0]->articles[0]->id)}}"><i class="icon icon game"></i>  开始观看</a>
+                                                @can('view',$note)
+                                                     <a class="ui button teal" href="{{route('article.show',$note->chapters[0]->articles[0]->id)}}"><i class="icon icon game"></i>  开始观看</a>
+                                                @else
+                                                    <a class="ui button teal login-required" href="{{route('order.purchase',['note_id'=>$note->id])}}"><i class="icon shop"></i>  购买本书</a>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
@@ -88,14 +98,20 @@
 
                                         <i class="grey file text outline icon"></i>
 
-                                        <a href="{{route('article.show',$article->id)}}" class="">
-                                            <div class="ui green horizontal small label">Free</div>
-                                            {{$article->title}}
-                                        </a>
+                                        @can('view',$article)
+                                            <a href="{{route('article.show',$article->id)}}" class="">
+                                                <div class="ui green horizontal small label">Free</div>
+                                                {{$article->title}}
+                                            </a>
+                                            @else('view',$article->id)
+                                            <a href="{{route('order.purchase',['note_id'=>$note->id])}}" class="">
+                                                {{$article->title}}
+                                            </a>
+                                            <span class="pull-right ui text grey">
+                                             <i class="icon lock "></i>
+                                         </span>
+                                        @endcan
 
-                                        {{--<span class="pull-right ui text grey">--}}
-                                             {{--<i class="icon lock "></i>--}}
-                                         {{--</span>--}}
                                     </li>
                                         @endforeach
                                 </ol>
