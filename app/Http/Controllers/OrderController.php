@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +17,13 @@ class OrderController extends Controller
 
             if (!is_null($note) && $note->need_pay==1)
             {
-                return view('order.index', compact('note'));
+                //创建订单
+                $orderInfos = Order::create([
+                    'user_id'=>Auth::id(),
+                    'total_amount'=>$note->price,
+                    'note_id'=>$note->id,
+                ]);
+                return view('order.index', compact('note','orderInfos'));
             } else{
                 return redirect()->route('docs')->with('danger', '笔记找不到！');
             }

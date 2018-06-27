@@ -23,6 +23,12 @@
             padding-right: 10px;
             margin-bottom: 10px;
         }
+        .order-info{
+            display: inline-block;
+            float: left;
+            width: 400px;
+
+        }
     </style>
 
     @endsection
@@ -67,6 +73,9 @@
 
 
                     <div class="order-bottom">
+                        <div class="order-info">
+                            <div class="line"><div class="line-label">订单编号：</div><div class="line-value">{{ $orderInfos->no }}</div></div>
+                        </div>
                         <div class="order-summary text-right">
                         <!-- 展示优惠信息结束 -->
                             <div class="total-amount">
