@@ -75,6 +75,9 @@ return array(
             'settings.site',
             'links'
         ],
+        '订单管理'=>[
+            'order'
+        ],
     ],
 
     /*
