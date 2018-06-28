@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
     protected $fillable = ['no','user_id','total_amount','paid_at','payment_method','payment_no','status','note_id'];
+
+    public function note()
+    {
+        return $this->belongsTo(Note::class);
+    }
 
     protected static function boot()
     {
@@ -41,5 +47,11 @@ class Order extends Model
         Log::warning(sprintf('find order no failed'));
 
         return false;
+    }
+
+    public static function own($order)
+    {
+        $order = Order::query()->where('no','=',$order->no)->first();
+        return $order->user_id==\Auth::id();
     }
 }

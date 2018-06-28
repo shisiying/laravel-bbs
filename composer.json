@@ -32,7 +32,8 @@
         "summerblue/administrator": "~1.1",
         "vanry/laravel-scout-tntsearch": "^1.2",
         "venturecraft/revisionable": "^1.28",
-        "viacreative/sudo-su": "~1.1"
+        "viacreative/sudo-su": "~1.1",
+        "yansongda/laravel-pay": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.1",

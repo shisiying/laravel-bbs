@@ -91,8 +91,8 @@
                             </div>
                         <!-- 支付按钮开始 -->
                             <div class="payment-buttons">
-                                <a class="btn btn-primary btn-sm" href="#">支付宝支付</a>
-                                <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
+                                <a class="btn btn-primary btn-sm" href="{{route('order.alipay',$orderInfos)}}">支付宝支付</a>
+                                {{--<button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>--}}
                             </div>
                         <!-- 支付按钮结束 -->
                         </div>
