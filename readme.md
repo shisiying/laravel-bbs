@@ -33,6 +33,7 @@
 
 
 
+
 ### 还需开发功能
 
 - [x]全栈帖子搜索功能
@@ -44,6 +45,8 @@
 
 ## 怎么使用源码
 
+- Master中不是该项目的源码，请切换到xhz-xed分支进行clone
+- 源码仅做学习
 - 开发环境参考[Laravel开发环境部署](https://laravel-china.org/docs/laravel-development-environment/5.5)
 - git clone https://github.com/shisiying/Laravel-bbs
 
