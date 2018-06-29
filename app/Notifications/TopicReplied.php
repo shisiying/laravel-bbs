@@ -30,7 +30,7 @@ class TopicReplied extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['database'];
     }
 
     /**
@@ -57,7 +57,7 @@ class TopicReplied extends Notification implements ShouldQueue
         ];
     }
 
-    public function toMail($notifiable)
+    /**public function toMail($notifiable)
     {
          $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
          return (new MailMessage)
@@ -65,5 +65,5 @@ class TopicReplied extends Notification implements ShouldQueue
                     ->line('有人发了一条吐槽，请尽快审核.')
                     ->action('Notification Action', $url)
                     ->line('Thank you for using our application!');
-    }
+    }**/
 }

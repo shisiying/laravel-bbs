@@ -35,13 +35,14 @@ class ArticleController extends Controller
         {
             $request->chapter_id =$request->type;
             $body = $markdown->convertMarkdownToHtml($request->body);
-
+            $title = '生活'.rand(0,99999);
             if ($request->type==2){
                 $body = strip_tags($body,'<i>,<br>');
+                $title = $request->title;
             }
             Article::create([
                 'body' => $body,
-                'title'=>'生活'.rand(0,99999),
+                'title'=>$title,
                 'chapter_id'=>$request->chapter_id,
                 'link'=>$request->link,
                 'type'=>$request->type,
