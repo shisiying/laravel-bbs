@@ -212,6 +212,8 @@
                 if(index==1){
                     $('#chapter').hide();
                     $('#note').hide();
+                    $('#note').attr('required',false);
+
                     $('#chapter').children('select').attr('required',false);
 
                     $('#title').hide();
@@ -227,6 +229,7 @@
                 }else if(index==2) {
                     $('#chapter').hide();
                     $('#note').hide();
+                    $('#note').attr('required',false);
                     $('#chapter').children('select').attr('required',false);
 
                     $('#notice').hide();
@@ -274,7 +277,7 @@
                         if (chapter_id==result[x]['id']){
                             select = 'selected';
                         }
-                        newhtml += "<option value="+result[x]['id']+select+">"+result[x]['name']+"</option>";
+                        newhtml += "<option value="+"'"+result[x]['id']+"'"+select+">"+result[x]['name']+"</option>";
                     }
                     $('#chapter_select').append(newhtml);
                 });

@@ -122,6 +122,7 @@ class ArticleController extends Controller
 
     public function getChapters(Request $request)
     {
+        $chapters = null;
         if (is_numeric($request->note_id)){
             $chapters = json_encode(Chapter::query()->where('note_id','=',$request->note_id)->get()->toArray());
         }
