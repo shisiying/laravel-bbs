@@ -1,5 +1,7 @@
 ## 关于Laravel-bbs
 
+项目已上线，请访问这里 http://xhz-xed.org/
+
 本项目基于laravel5.5开发
 
 仿laravel-china，实现其论坛功能，活跃用户排行，支持github，微信第三方登陆，文章搜索，文档撰写，文档设置付费，文档支付阅读，广告设置等功能
