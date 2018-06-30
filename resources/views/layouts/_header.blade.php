@@ -80,7 +80,7 @@
                     @can('manage_contents')
                         <li>
                         <a href="{{ route('article.create') }}">
-                            <span class="fa fa-paint-brush text-md" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         </a>
                         </li>
                     @endcan
