@@ -1,42 +1,56 @@
-## 关于Laravel-bbs
+# 前言
+该项目整合了laravel-china入门，进阶，api第三方登陆，电商教程的部分功能模块，参考了laravel-china前身开源的phphub样式，打造了一个可以互动的社区论坛模块以及支持付费阅读的的个人博客，本系统有以下几个角色。
+## 1.角色
+在淘书屋里会出现以下角色：
 
-项目已上线，请访问这里 http://xhz-xed.org/
+游客——没有登录的用户
+用户——github,邮箱微信注册用户，可以进行论坛发布讨论，可以购买需要付费的笔记进行阅读
+管理员，站长——辅助站长做内容管理，笔记创建，广告位设置，论坛内容管理，用户管理，其他展示页的管理
 
-本项目基于laravel5.5开发
+## 2.信息结构
+主要信息有：
 
-仿laravel-china，实现其论坛功能，活跃用户排行，支持github，微信第三方登陆，文章搜索，文档撰写，文档设置付费，文档支付阅读，广告设置等功能
+笔记 note——章节属于一个笔记，一个笔记可以多个章节，可以设置是否付费和金额
+章节 chapter——笔记张杰，一个章节可以有多个文章
+用户 User——所有内容都围绕用户来进行，采用github,邮箱微信自动登录方式验证
+文章 article——本博客系统的核心数据，支持markdown，博客管理员可以选择笔记和章节发布文章
+订单 Order——用户购买书本的凭证
+话题 Topic，LaraBBS 论坛应用的最核心数据，有时我们称为帖子；
+分类 Category，话题的分类，每一个话题必须对应一个分类，分类由管理员创建；
+回复  Reply，针对某个话题的讨论，一个话题下可以有多个回复。
+消息通知 Notice——向用户反馈信息
+广告 Advertising——在首页进行展示
 
-主要功能模块
+## 3.动作
+角色和信息之间的互动称为动作，主要有以下几种：
 
-- github，微信第三方登陆
-- 文章/论坛帖子搜索
-- 广告设置
-- markdown文档编写
-- 后台支持设置文档付费金额
-- 支持支付宝支付
-- 用户认证 —— 注册、登录、退出；
-- 个人中心 —— 用户个人中心，编辑资料；
-- 用户授权 —— 作者才能删除自己的内容；
-- 上传图片 —— 修改头像和编辑话题时候上传图片；
-- 表单验证 —— 使用表单验证类；
-- 模型监控 —— 自动 Slug 翻译；
-- 使用第三方 API —— 请求百度翻译 API ；
-- 队列任务 —— 将百度翻译 API 请求和发送邮件放到队列中，以提高响应；
-- 计划任务 —— 『活跃用户』计算，一小时计算一次；
-- 多角色权限管理 —— 允许站长，管理员权限的存在；
-- 后台管理 —— 后台数据模型管理；
-- 邮件通知 —— 发送新回复邮件通知；
-- 站内通知 —— 话题有新回复；
-- 自定义 Artisan 命令行 —— 自定义活跃用户计算命令；
-- 自定义 Trait —— 活跃用户的业务逻辑实现；
-- 自定义中间件 —— 记录用户的最后登录时间；
-- 模型修改器；
-- XSS 安全防御；
+- 用户注册、用户第三方登陆
+- 用户创建话题
+- 用户回复话题
+- 管理员选择笔记，章节发布文章
+- 用户创建订单支付
+- 用户有权限访问文章
+- 管理员设置资源推荐，广告位设置
 
+
+
+# 关于项目
+
+具体可移步 http://xhz-xed.org/
+![支付](http://p982sr293.bkt.clouddn.com/bugshow.png)
+![项目](http://p982sr293.bkt.clouddn.com/projectshow.png)
+![订单](http://p982sr293.bkt.clouddn.com/ordershow.png)
+![生活](http://p982sr293.bkt.clouddn.com/lifeshow.png)
+![首页](http://p982sr293.bkt.clouddn.com/homeshow.png)
+![笔记](http://p982sr293.bkt.clouddn.com/noteshow.png)
+![文章](http://p7gqfr2rf.bkt.clouddn.com/articleshow.png)
+![订单管理](http://p7gqfr2rf.bkt.clouddn.com/ordermanage.png)
 
 
 
 ### 还需开发功能
+
+基于laravel5.5开发
 
 - [x]全栈帖子搜索功能
 - [ ]用户关注功能
@@ -48,7 +62,7 @@
 
 ## 怎么使用源码
 
-线上环境部署，参考[部署指南](http://xhz-xed.org/articles/4)
+### 线上环境部署，参考[部署指南](http://xhz-xed.org/articles/4)
 
 注意：
 
@@ -60,7 +74,7 @@
 
 详细操作请按照以下
 
-## 运行环境要求
+ 运行环境要求
 
 - Nginx 1.8+
 - PHP 7.1+
@@ -68,21 +82,21 @@
 - Redis 3.0+
 - Memcached 1.4+
 
-## 开发环境部署/安装
+### 开发环境部署/安装
 
 本项目代码使用 PHP 框架 [Laravel 5.5](https://d.laravel-china.org/docs/5.5/) 开发，本地开发环境使用 [Laravel Homestead](https://d.laravel-china.org/docs/5.5/homestead)。
 
 下文将在假定读者已经安装好了 Homestead 的情况下进行说明。如果您还未安装 Homestead，可以参照 [Homestead 安装与设置](https://laravel-china.org/docs/5.5/homestead#installation-and-setup) 进行安装配置。
 
-### 基础安装
+#### 基础安装
 
-#### 1. 克隆源代码
+##### 1. 克隆源代码
 
 克隆 `larabbs` 源代码到本地：
 
     > git clone git@github.com:summerblue/larabbs.git
 
-#### 2. 配置本地的 Homestead 环境
+##### 2. 配置本地的 Homestead 环境
 
 1). 运行以下命令编辑 Homestead.yaml 文件：
 
@@ -115,12 +129,12 @@ homestead provision
 
 随后请运行 `homestead reload` 进行重启。
 
-#### 3. 安装扩展包依赖
+##### 3. 安装扩展包依赖
 
     composer install
 
 
-#### 4. 生成配置文件
+##### 4. 生成配置文件
 
 ```
 cp .env.example .env
@@ -129,13 +143,13 @@ cp .env.example .env
 你可以根据情况修改 `.env` 文件里的内容，如数据库连接、缓存、邮件设置等。
 
 
-#### 5. 生成秘钥
+##### 5. 生成秘钥
 
 ```shell
 php artisan key:generate
 ```
 
-#### 6. 生成数据表及生成测试数据
+##### 6. 生成数据表及生成测试数据
 
 在 Homestead 的网站根目录下运行以下命令
 
@@ -146,11 +160,11 @@ $ php artisan migrate --seed
 初始的用户角色权限已使用数据迁移生成。
 
 
-#### 7. 配置 hosts 文件
+##### 7. 配置 hosts 文件
 
     echo "192.168.10.10   larabbs.test" | sudo tee -a /etc/hosts
 
-### 前端框架安装
+#### 前端框架安装
 
 1). 安装 node.js
 
@@ -185,7 +199,7 @@ npm run watch
 npm run watch-poll
 ```
 
-### 链接入口
+#### 链接入口
 
 * 首页地址：http://larabbs.test/
 * 管理后台：http://larabbs.test/admin
@@ -199,7 +213,7 @@ password: password
 
 至此, 安装完成 ^_^。
 
-## 扩展包使用情况
+#### 扩展包使用情况
 
 | 扩展包 | 一句话描述 | 本项目应用场景 |
 | --- | --- | --- |
@@ -216,20 +230,20 @@ password: password
 |[laravel/socialite](https://socialiteproviders.github.io/)|第三方登陆库|微信，github登陆|
 |[yansongda/pay](https://github.com/yansongda/laravel-pay)|第三方支付|支付宝微信支付|
 
-## 自定义 Artisan 命令
+#### 自定义 Artisan 命令
 
 | 命令行名字 | 说明 | Cron | 代码调用 |
 | --- | --- | --- | --- |
 | `larabbs:calculate-active-user` |  生成活跃用户 | 一小时运行一次 | 无 |
 | `larabbs:sync-user-actived-at` | 从 Redis 中同步最后登录时间到数据库中 | 每天早上 0 点准时 | 无 |
 
-## 队列清单
+#### 队列清单
 
 | 名称 | 说明 | 调用时机 |
 | --- | --- | --- |
 | TranslateSlug.php | 将话题标题翻译为 Slug | TopicObserver 事件 saved() |
 | TopicReplied.php | 通知作者话题有新回复 | 话题被评论以后 |
 
-## License
+#### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
