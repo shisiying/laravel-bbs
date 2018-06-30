@@ -11,7 +11,7 @@
 主要信息有：
 
 笔记 note——章节属于一个笔记，一个笔记可以多个章节，可以设置是否付费和金额
-章节 chapter——笔记张杰，一个章节可以有多个文章
+章节 chapter——笔记章节，一个章节可以有多个文章
 用户 User——所有内容都围绕用户来进行，采用github,邮箱微信自动登录方式验证
 文章 article——本博客系统的核心数据，支持markdown，博客管理员可以选择笔记和章节发布文章
 订单 Order——用户购买书本的凭证
@@ -37,6 +37,7 @@
 # 关于项目
 
 具体可移步 http://xhz-xed.org/
+![文章](http://p7gqfr2rf.bkt.clouddn.com/article.png)
 ![支付](http://p982sr293.bkt.clouddn.com/bugshow.png)
 ![项目](http://p982sr293.bkt.clouddn.com/projectshow.png)
 ![订单](http://p982sr293.bkt.clouddn.com/ordershow.png)
